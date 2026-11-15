@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Octo.Core</PackageId>
+    <Version>1.0.5</Version>
+    <Authors>Octo Architecture Team</Authors>
+    <Description>Biblioteca core de Domain-Driven Design, abstrações e Result Pattern para o ecossistema Octo.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="2.0.5" />
+  </ItemGroup>
+
+</Project>
