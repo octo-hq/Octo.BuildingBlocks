@@ -1,0 +1,38 @@
+name: Publicar Pacotes no GitHub Packages
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restaurar dependências
+      run: dotnet restore
+
+    - name: Build da Solution
+      run: dotnet build --no-restore --configuration Release
+
+    # O run_number incrementa automaticamente a cada execução (ex: 1.0.1, 1.0.2, 1.0.3...)
+    - name: Criar pacotes NuGet
+      run: dotnet pack --no-build --configuration Release --output ./nupkg -p:Version=1.0.${{ github.run_number }}
+
+    - name: Adicionar fonte do GitHub Packages
+      run: dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://github.com{{ github.repository_owner }}/index.json"
+
+    - name: Publicar todos os pacotes no GitHub Packages
+      run: dotnet nuget push "./nupkg/*.nupkg" --source "github" --skip-duplicate

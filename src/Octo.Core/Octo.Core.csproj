@@ -5,10 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Octo.Core</PackageId>
-    <Version>1.0.5</Version>
+    <PackageId>Octo.Core</PackageId>    
     <Authors>Octo Architecture Team</Authors>
     <Description>Biblioteca core de Domain-Driven Design, abstrações e Result Pattern para o ecossistema Octo.</Description>
+    <RepositoryUrl>https://github.com/octo-hq/Octo.BuildingBlocks</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

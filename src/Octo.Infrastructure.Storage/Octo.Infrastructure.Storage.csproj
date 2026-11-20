@@ -5,10 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Octo.Infrastructure.Storage</PackageId>
-    <Version>1.0.0</Version>
+    <PackageId>Octo.Infrastructure.Storage</PackageId>    
     <Authors>Octo Architecture Team</Authors>
     <Description>Biblioteca de infraestrutura para abstração de armazenamento de arquivos (FileSystem local e S3) no ecossistema Octo.</Description>
+    <RepositoryUrl>https://github.com/octo-hq/Octo.BuildingBlocks</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
