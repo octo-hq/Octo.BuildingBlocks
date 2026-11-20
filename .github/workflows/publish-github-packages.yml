@@ -3,6 +3,7 @@ name: Publicar Pacotes no GitHub Packages
 on:
   push:
     branches: [ "main", "master" ]
+  workflow_dispatch:
 
 permissions:
   contents: read
