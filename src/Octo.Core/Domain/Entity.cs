@@ -1,10 +1,14 @@
 ﻿using Flunt.Notifications;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Octo.Core.Domain;
 
+[SuppressMessage(
+    "Major Code Smell",
+    "S4035:Classes implementing 'IEquatable<T>' should be sealed",
+    Justification = "Base domain entity class intended to be inherited; concrete entities share identity semantics through this base.")]
 public abstract class Entity<TId> : Notifiable<Notification>, IEquatable<Entity<TId>>
-{
-    const string ApiKeySecret = "Qaaz19u654ç~poj*&nMR";
+{    
     public TId Id { get; protected set; } = default!;
 
     protected Entity(TId id)
@@ -21,6 +25,8 @@ public abstract class Entity<TId> : Notifiable<Notification>, IEquatable<Entity<
     {
         if (other is null) return false;
         if (ReferenceEquals(this, other)) return true;
+        if (GetType() != other.GetType()) return false;
+
         return EqualityComparer<TId>.Default.Equals(Id, other.Id);
     }
 
