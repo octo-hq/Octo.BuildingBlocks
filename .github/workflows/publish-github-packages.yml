@@ -82,12 +82,10 @@ jobs:
         run: dotnet sonarscanner end /d:sonar.token="$SONAR_TOKEN"
 
       # O run_number incrementa automaticamente a cada execução (ex: 1.0.1, 1.0.2, 1.0.3...)
-      - name: Pack NuGet package
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Pack NuGet package        
         run: dotnet pack "${{ env.PACK_PROJECT_PATH }}" --no-build --configuration Release --output "./nupkg" -p:Version=1.0.${{ github.run_number }}
 
-      - name: Adicionar fonte do GitHub Packages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Adicionar fonte do GitHub Packages        
         run: |
           dotnet nuget add source \
             --username ${{ github.actor }} \
@@ -96,8 +94,7 @@ jobs:
             --name github \
             "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
 
-      - name: Publicar todos os pacotes no GitHub Packages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Publicar todos os pacotes no GitHub Packages        
         run: |
           dotnet nuget push "./nupkg/*.nupkg" \
             --source "github" \
