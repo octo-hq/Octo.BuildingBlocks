@@ -14,6 +14,8 @@ public class Result : Notifiable<Notification>
 
     public static Result Success() => new();
     public static Result Failure(Notifiable<Notification> validations) => new(validations);
+    public static Result<TValue> Success<TValue>(TValue value) => new(value);
+    public static Result<TValue> Failure<TValue>(Notifiable<Notification> validations) => new(validations);
 }
 
 public class Result<TValue> : Result
@@ -21,7 +23,7 @@ public class Result<TValue> : Result
     // Transformado em propriedade pública para o System.Text.Json conseguir serializar corretamente na API
     public TValue? Value { get; }
 
-    protected Result(TValue? value)
+    protected internal Result(TValue? value)
     {
         if (value is Notifiable<Notification> validations && !validations.IsValid)
             AddNotifications(validations.Notifications);
@@ -30,13 +32,9 @@ public class Result<TValue> : Result
     }
 
     // Construtor protegido para Falha (reutiliza o construtor da classe base)
-    protected Result(Notifiable<Notification> validations) : base(validations)
+    protected internal Result(Notifiable<Notification> validations) : base(validations)
     {
         Value = default;
     }
 
-    public static Result<TValue> Success(TValue value) => new(value);
-
-    // Método estático de falha para o tipo genérico
-    public new static Result<TValue> Failure(Notifiable<Notification> validations) => new(validations);
 }

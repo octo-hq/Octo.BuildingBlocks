@@ -4,7 +4,7 @@ namespace Octo.Core.Domain;
 
 public abstract class Entity<TId> : Notifiable<Notification>, IEquatable<Entity<TId>>
 {
-    public TId Id { get; protected set; }
+    public TId Id { get; protected set; } = default!;
 
     protected Entity(TId id)
     {

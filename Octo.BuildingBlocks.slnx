@@ -5,4 +5,5 @@
   <Project Path="src/Octo.Core/Octo.Core.csproj" />
   <Project Path="src/Octo.Infrastructure.Storage/Octo.Infrastructure.Storage.csproj" Id="1635a02d-4d61-422e-a7fb-d35ad895d281" />
   <Project Path="src/Octo.Infrastructure.Tenant/Octo.Infrastructure.Tenant.csproj" Id="1a17ac39-607b-433d-bdc5-3385dab61a7a" />
+  <Project Path="tests/Octo.Core.UnitTests/Octo.Core.UnitTests.csproj" />
 </Solution>
