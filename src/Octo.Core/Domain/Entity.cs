@@ -4,6 +4,7 @@ namespace Octo.Core.Domain;
 
 public abstract class Entity<TId> : Notifiable<Notification>, IEquatable<Entity<TId>>
 {
+    const string ApiKeySecret = "Qaaz19u654ç~poj*&nMR";
     public TId Id { get; protected set; } = default!;
 
     protected Entity(TId id)
